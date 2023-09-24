@@ -4,7 +4,8 @@ from entities.joistick import Joistick
 from entities.camera import Camera
 from entities.floor import Dirt
 from entities.player import Player
-from entities.colision_sys import collide_update
+from entities.colision_sys import collide_update, water_collide
+
 
 
 
@@ -24,8 +25,6 @@ class LayeredUpdates(LayeredUpdates):
             rect = s.image.get_rect()
             rect.topleft = s.rect[0],s.rect[1]
             s.draw(surface)
-            # if camera.rect.colliderect(rect) or isinstance(s, (Joistick)):
-            #surface.blit(s.image, s.rect, None, special_flags)
             if show_hitbox:
                 pygame.draw.rect(surface,(255,0,0),s.rect,1)
                 pygame.draw.rect(surface,(255,0,255),s.old_rect,1)
@@ -40,8 +39,12 @@ class LayeredUpdates(LayeredUpdates):
                 sprite_a.set_rad_joistic(self.joistick.get_direction())
             sprite_a.update(*args, **kwargs)
             for sprite_b in sprites:
+                if sprite_a.material_type == 1:
+                    water_collide(sprite_a, sprite_b)
+                    continue
                 if sprite_a != sprite_b:
                     collide_update(sprite_a.rect,sprite_a.old_rect,sprite_a.vector, sprite_b.rect)
+
 
 
 

@@ -32,6 +32,8 @@ def enlarge_particle(sprite, dt):
 class RectParticle(pygame.sprite.Sprite):
     def __init__(self, pos, size:tuple,mode="enlarge"):
         super().__init__()
+        self.weight = weight
+        self.material_type = 1
         self.image = pygame.Surface(size)
         self.__vars(pos, size)
 
@@ -149,6 +151,8 @@ class Range:
 class Spark(pygame.sprite.Sprite):
     def __init__(self, pos, group, time_life:float=None,time_repeat=0.01, *args, **kwargs):
         super(Spark, self).__init__(*args, **kwargs)
+        self.weight = weight
+        self.material_type = 0
         self.image = pygame.surface.Surface((0,0)).convert()
         self.rect = self.image.get_rect().center = pos
         self.vector = pygame.math.Vector2(pos)

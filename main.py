@@ -9,6 +9,7 @@ from entities.layered_update import LayeredUpdates
 from entities.camera import Camera
 from entities.temporal_map import temporal_map
 from entities.sprite import Sprite
+from entities.water import Water
 
 
 
@@ -22,12 +23,12 @@ def draw_circle(surface, color, center, radius):
 class App:
     def __init__(self):
         pygame.init()
-        self.fps = 0
+        self.fps = 60
         self.bg_color = (pygame.color.Color('#6614ba'))
         self.clock = pygame.time.Clock()
         self.layered_updates = LayeredUpdates()
         self.screen = pygame.display.set_mode((0,0))
-        pygame.display.set_caption(" Platform Game")
+        pygame.display.set_caption("Platform Game")
         self.config()
 
 
@@ -39,7 +40,7 @@ class App:
         #self.layered_updates.add(self.camera)
         temporal_map(self.layered_updates, self.screen)
         self.layered_updates.set_pos_joistick((self.screen.get_width()-50,self.screen.get_height()-50))
-        
+        self.layered_updates.add(Water(self.screen,7))
 
 
     def run(self):

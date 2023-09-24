@@ -25,7 +25,8 @@ def collide_update(rect_a, old_rect_a, vector_a, rect_b):
             vector_a.y = rect_a.y
 
 
-
+def water_collide(sprite_a, sprite_b):
+    pass
 
 
 

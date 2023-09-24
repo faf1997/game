@@ -7,6 +7,8 @@ from math import cos, sin, atan2
 class Sprite2(pygame.sprite.Sprite):
     def __init__(self, screen):
         super().__init__()
+        self.weight = weight
+        self.material_type = 1
         self.image = pygame.Surface((50, 50))
         self.image.fill((255,0,0))
         self.rect = self.image.get_rect()

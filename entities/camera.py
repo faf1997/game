@@ -8,6 +8,8 @@ import pygame
 class Camera(pygame.sprite.Sprite):
     def __init__(self, screen, *args, **kwarg):
         super(Camera,self).__init__(*args, **kwarg)
+        self.weight = weight
+        self.material_type = 1
         self.image = pygame.surface.Surface((screen.get_width(),screen.get_height()))
         self.rect = self.image.get_rect()
         self.old_rect = self.rect.copy()

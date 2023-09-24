@@ -10,6 +10,8 @@ from math import cos, sin
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos):
         super(Player,self).__init__()
+        self.weight = weight
+        self.material_type = 1
         self.image = load_img(f'{get_path()}./imgs/dirt_2_4.png',mode="no_alpha")
         self.rect = self.image.get_rect(); self.rect.topleft = pos
         self.old_rect = self.rect.copy()

@@ -2,6 +2,7 @@
 from entities.floor import Dirt
 from entities.player import Player
 from entities.utils import get_path
+from entities.box import BoxWood
 import os
 
 path = "./imgs/"
@@ -17,13 +18,13 @@ DICT_TEXTURES = {
 
 def temporal_map(group,screen):
     map1 =[
-        [" "," ","d1","p","d1"," "," "," "," "," "],
-        [" "," "," ","d1"," "," "," "," "," "," "],
+        [" "," "," ","p"," "," "," "," "," "," "],
         [" "," "," "," "," "," "," "," "," "," "],
         [" "," "," "," "," "," "," "," "," "," "],
+        [" "," "," ","bw"," "," "," "," "," "," "],
         [" "," "," "," "," "," "," "," "," "," "],
         [" "," "," "," "," "," "," "," "," "," "],
-        [" ","d0","d1","d1","d1","d2"," ",],
+        [" ","d0","d1","d1","d1","d2"," "," "," "],
         [" "," "," "," "," "," "," "," "," "," "],
         [" "," "," "," "," "," "," "," "," "," "],
         [" "," "," "," "," "," "," "," "," "," "]
@@ -37,11 +38,15 @@ def temporal_map(group,screen):
     for y in range(len(map1)):
         pos_y -= 16
         for x, elem  in enumerate(map1[y]):
+            pos_tile = (x*16,pos_y)
             if elem in [" ", ""]:
                 continue
             if elem == "p":
-                group.add(Player((x*16,pos_y)))
+                group.add(Player(pos_tile))
                 continue
-            group.add(Dirt((x*16,pos_y),os.path.abspath(f'{path}{DICT_TEXTURES[elem]}')))
+            if elem == "bw":
+                group.add(BoxWood(pos_tile))
+                continue
+            group.add(Dirt(pos_tile,os.path.abspath(f'{path}{DICT_TEXTURES[elem]}')))
 
             #f"{get_path()}./imgs/joystick.png"

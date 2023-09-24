@@ -10,6 +10,8 @@ from random import randint
 class Dirt(pygame.sprite.Sprite):
     def __init__(self, pos, path):
         super(Dirt,self).__init__()
+        self.weight = weight
+        self.material_type = 1
         self.image = load_img(path,mode="no_alpha")
         self.rect = self.image.get_rect()
         self.old_rect = self.rect.copy()
